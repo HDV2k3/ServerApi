@@ -47,12 +47,12 @@ namespace ServerApi.Controllers
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> AddProduct([FromBody] Product product)
+		public async Task<IActionResult> AddProduct([FromBody] ProductDto product)
 		{
 			try
 			{
 				await _productRepository.AddProductAsync(product);
-				return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
+				return CreatedAtAction(nameof(GetProductById), new { id = product.MaHH }, product);
 			}
 			catch (Exception ex)
 			{
@@ -61,13 +61,13 @@ namespace ServerApi.Controllers
 			}
 		}
 		[HttpPut("{id}")]
-		public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
+		public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductDto product)
 		{
 			try
 			{
-				if (id != product.Id)
-					return BadRequest();
-				await _productRepository.UpdateProductAsync(product);
+                if (id != Convert.ToInt32(product.MaHH))
+                    return BadRequest();
+                await _productRepository.UpdateProductAsync(product);
 				return NoContent();
 			}
 			catch (Exception ex)

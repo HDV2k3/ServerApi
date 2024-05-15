@@ -22,7 +22,10 @@ builder.Services.AddCors(options =>
 	});
 });
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
+builder.Services.AddScoped<IFactoryRepository, EFFactoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
+builder.Services.AddScoped<IUserRepository, EFUserRepository>();
+builder.Services.AddScoped<ISpecifications, EFSpecification>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

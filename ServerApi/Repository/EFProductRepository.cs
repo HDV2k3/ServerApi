@@ -11,30 +11,30 @@ namespace ServerApi.Repository
 		{
 			_context = context;
 		}
-		public async Task<IEnumerable<Product>> GetProductsAsync()
+		public async Task<IEnumerable<ProductDto>> GetProductsAsync()
 		{
-			return await _context.Products.ToListAsync();
+			return await _context.productDtos.ToListAsync();
 		}
-		public async Task<Product> GetProductByIdAsync(int id)
+		public async Task<ProductDto> GetProductByIdAsync(int id)
 		{
-			return await _context.Products.FindAsync(id);
+			return await _context.productDtos.FindAsync(id);
 		}
-		public async Task AddProductAsync(Product product)
+		public async Task AddProductAsync(ProductDto product)
 		{
-			_context.Products.Add(product);
+			_context.productDtos.Add(product);
 			await _context.SaveChangesAsync();
 		}
-		public async Task UpdateProductAsync(Product product)
+		public async Task UpdateProductAsync(ProductDto product)
 		{
 			_context.Entry(product).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
 		}
 		public async Task DeleteProductAsync(int id)
 		{
-			var product = await _context.Products.FindAsync(id);
+			var product = await _context.productDtos.FindAsync(id);
 			if (product != null)
 			{
-				_context.Products.Remove(product);
+				_context.productDtos.Remove(product);
 				await _context.SaveChangesAsync();
 			}
 		}

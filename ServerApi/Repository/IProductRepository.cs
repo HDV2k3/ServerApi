@@ -4,11 +4,11 @@ namespace ServerApi.Repository
 {
 	public interface IProductRepository
 	{
-		Task<IEnumerable<Product>> GetProductsAsync();
-		Task<Product> GetProductByIdAsync(int id);
-		Task AddProductAsync(Product product);
-		Task UpdateProductAsync(Product product);
+		Task<IEnumerable<ProductDto>> GetProductsAsync();
+		Task<ProductDto> GetProductByIdAsync(int id);
+		Task AddProductAsync(ProductDto product);
+		Task UpdateProductAsync(ProductDto product);
 		Task DeleteProductAsync(int id);
-	}
+    }
 
 }
